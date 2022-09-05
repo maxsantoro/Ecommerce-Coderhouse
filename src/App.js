@@ -1,12 +1,13 @@
-
 import './App.css';
-import ResponsiveAppBar from './components/navbar';
-import ButtonAppBar from './components/navbar';
+import NavBar from './components/NavBar';
+import ItemListContainer from './container/ItemListContainer';
+
 
 function App() {
   return (
     <div >
-     <ResponsiveAppBar></ResponsiveAppBar>
+     <NavBar/>
+     <ItemListContainer/>
     </div>
   );
 }
