@@ -1,18 +1,20 @@
 import React from 'react';
+import ItemCount from '../components/ItemCount';
+
 
 const ItemListContainer = () => {
-    /* const onAdd = (qty) => {
+     const onAdd = (qty) => {
         alert("You have selected" + qty + "items.")
-    } */
+     }
+    
     const greeting = () => {
-        console.log("hola")
-
+        
     }
     
     return (
         <div>
-            {greeting}
-            {/* <ItemCount stock ={5} initial= {1} onAdd={onAdd} /> */}
+            <h1>{greeting}</h1>
+            <ItemCount stock ={5} initial= {0} onAdd={onAdd} /> 
         </div>
     );
 }
