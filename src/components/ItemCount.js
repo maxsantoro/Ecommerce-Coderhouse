@@ -11,7 +11,7 @@ function ItemCount({stock,initial,onAdd}) {
   const IncNum = () =>{
      if (count < stock){
       setCount (count + 1)
-      alert({onAdd}) 
+      
      } 
      else{
       alert("No more stock available")
