@@ -2,14 +2,10 @@ import React from 'react';
 import ItemCount from '../components/ItemCount';
 
 
-const ItemListContainer = () => {
+const ItemListContainer = ({greeting}) => {
      const onAdd = (qty) => {
         alert("You have selected" + qty + "items.")
      }
-    
-    const greeting = () => {
-        
-    }
     
     return (
         <div>
