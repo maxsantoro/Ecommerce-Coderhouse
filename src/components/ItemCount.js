@@ -42,6 +42,7 @@ function ItemCount({stock,initial,onAdd}) {
           <Button onClick={DecNum}>
             <RemoveIcon></RemoveIcon>
           </Button>
+          <Button style={{color:"black"}} onClick={() => onAdd(count)}>Agregar al carrito</Button>
         </div>
       </div>
     </div>

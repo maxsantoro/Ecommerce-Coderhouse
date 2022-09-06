@@ -4,7 +4,7 @@ import ItemCount from '../components/ItemCount';
 
 const ItemListContainer = ({greeting}) => {
      const onAdd = (qty) => {
-        alert("You have selected" + qty + "items.")
+        alert("You have selected " + qty + " items.")
      }
     
     return (
