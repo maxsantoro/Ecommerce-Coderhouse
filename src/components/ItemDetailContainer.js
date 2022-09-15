@@ -1,19 +1,22 @@
-import { useEffect , useState } from 'react';
-import fetchProductos from '../utils/fetchProductos';
-import { products } from '../utils/products';
-import ItemDetail from './ItemDetail';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import customFetch from "../utils/customFetch";
+import ItemDetail from "./ItemDetail";
+const { products } = require('../utils/products');
 
 const ItemDetailContainer = () => {
-    const [data, setData] = useState({});
+    const [dato, setDato] = useState({});
+    const { idItem } = useParams();
+    
 
     useEffect(() => {
-        fetchProductos(2000,products)
-        .then(result => setData(result))
-        .catch(err=>console.log(err))
+        customFetch(2000, products.find(item => item.id === parseInt(idItem)))
+            .then(result => setDato(result))
+            .catch(err => console.log(err))
     }, []);
-
+    
     return (
-        <ItemDetail item={data}/>
+        <ItemDetail item={dato} />
     );
 }
 

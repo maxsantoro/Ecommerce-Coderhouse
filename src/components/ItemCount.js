@@ -1,35 +1,62 @@
-import { Button, Tooltip } from "@mui/material";
-import React from "react";
-import { useState } from "react";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import { Button } from '@material-ui/core';
+import { Add, Remove } from '@material-ui/icons';
+import { useEffect, useState } from 'react';
+import { ProductAmountContainer, ProductAmount } from './styledComponents';
 
-function ItemCount({stock,initial,onAdd}) {
+const ItemCount = ({ stock = 0, initial = 1,  onAdd }) => {
+    const [count, setCount] = useState(0);
 
+    useEffect(() => {
+        setCount(initial);
+    },[]);
+
+    const increment = () => {
+        if (count < stock) {
+            setCount(count + 1);
+        }
+    }
+    
+    const decrement = () => {
+        if (count > initial) {
+            setCount(count - 1);
+        }
+    }
+    return (
+        <ProductAmountContainer>
+            <Button variant="text" onClick={increment}><Add /></Button>
+            <ProductAmount>{count}</ProductAmount>
+            <Button variant="text" onClick={decrement}><Remove /></Button>
+            {
+                stock
+                ? <Button variant="contained" color="primary" onClick={() => onAdd(count)}>Add to Cart</Button>
+                : <Button variant="contained" disabled>Add to Cart</Button>
+            }
+            
+        </ProductAmountContainer>
+    );
+}
+
+export default ItemCount;
+/* unction ItemCount({ stock = 0, initial = 1, onAdd }) {
   const [count, setCount] = useState(initial);
-  
-  const IncNum = () =>{
-     if (count < stock){
-      setCount (count + 1)
-      
-     } 
-     else{
-      alert("No more stock available")
-     }
-  
-  }
 
-  const DecNum = () =>{
-    if (count > 0) setCount(count -1);
+  const IncNum = () => {
+    if (count < stock) {
+      setCount(count + 1);
+    } else {
+      alert("No more stock available");
+    }
+  };
+
+  const DecNum = () => {
+    if (count > initial) setCount(count - 1);
     else {
       setCount(0);
-      alert("min limit reached")
+      alert("min limit reached");
     }
-  }
-
-
-  return (
-    <div className="main_div">
+  };
+ */
+   /*  <div className="main_div">
       <div className="center_div">
         <h1>{count}</h1>
         <div className="btn_div">
@@ -38,15 +65,15 @@ function ItemCount({stock,initial,onAdd}) {
               <AddIcon />
             </Button>
           </Tooltip>
-
           <Button onClick={DecNum}>
             <RemoveIcon></RemoveIcon>
           </Button>
-          <Button style={{color:"black"}} onClick={() => onAdd(count)}>Agregar al carrito</Button>
+          { stock
+            ? <Button style={{ color: "black" }} onClick={() => onAdd(count)}>
+              Agregar al carrito
+            </Button>
+            : <Button style={{ color: "black" }} >Add to Cart</Button>
+          }
         </div>
       </div>
-    </div>
-  );
-}
-
-export default ItemCount;
+    </div> */ 
