@@ -1,15 +1,15 @@
 let is_ok = true;
 
-const customFetch = (time, task) => {
+const fetchProductos = (time, task) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (is_ok) {
                 resolve(task);
             } else {
-                reject("Error in the customFetch :(");
+                reject("Error FetchingProducts");
             }
         }, time);
     });
 }
 
-export default customFetch;
+export default fetchProductos;

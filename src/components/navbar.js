@@ -5,7 +5,7 @@ import { Wrapper, Logo, MenuItem, Left, Center, Right } from './styledComponents
 
 const NavBar = () => {
     return (
-        <AppBar position="relative">
+        <AppBar color="secondary" position="relative">
             <Wrapper>
                 <Left>
                     <Link to='/' style={{textDecoration: "none", color: "white"}}><Logo>AMAX</Logo></Link>

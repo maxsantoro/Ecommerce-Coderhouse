@@ -1,8 +1,6 @@
-import ItemCount from "./ItemCount";
-import ItemList from "./ItemList";
-import { Wrapper } from "./styledComponents";
-import customFetch from "../utils/customFetch";
 import { useEffect, useState } from "react";
+import Itemlist from "./ItemList";
+import fetchProducts from "../utils/fetchProducts";
 import { useParams } from "react-router";
 const { products } = require("../utils/products");
 
@@ -12,13 +10,12 @@ const ItemListContainer = () => {
 
   console.log(idCategory);
 
-  //componentDidUpdate
   useEffect(() => {
-    customFetch(
+    fetchProducts(
       2000,
       products.filter((item) => {
         if (idCategory === undefined) return item;
-        return item.categoryId === parseInt(idCategory);
+        return item.category === parseInt(idCategory);
       })
     )
       .then((result) => setDatos(result))
@@ -28,11 +25,10 @@ const ItemListContainer = () => {
   const onAdd = (qty) => {
     alert("You have selected " + qty + " items.");
   };
-
   return (
-    <>
-      <ItemList items={datos} />
-    </>
+    <div>
+      <Itemlist items={datos} />
+    </div>
   );
 };
 
