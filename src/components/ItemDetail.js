@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import { DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price } from './styledComponents';
 
@@ -25,7 +26,7 @@ const ItemDetail = ({ item }) => {
                     </InfoContainer>
                     <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
                 </WrapperDetail>
-            </DetailContainer>
+            </DetailContainer>  
             : <p>Cargando...</p>
         }
         </>

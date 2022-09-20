@@ -1,40 +1,52 @@
-import { Button } from '@material-ui/core';
-import { Add, Remove } from '@material-ui/icons';
-import { useEffect, useState } from 'react';
-import { ProductAmountContainer, ProductAmount } from './styledComponents';
+import { Button } from "@material-ui/core";
+import { Add, Remove } from "@material-ui/icons";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { ProductAmountContainer, ProductAmount } from "./styledComponents";
 
-const ItemCount = ({ stock = 0, initial = 1,  onAdd }) => {
-    const [count, setCount] = useState(0);
+const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
+  const [count, setCount] = useState(0);
 
-    useEffect(() => {
-        setCount(initial);
-    },[]);
+  useEffect(() => {
+    setCount(initial);
+  }, []);
 
-    const increment = () => {
-        if (count < stock) {
-            setCount(count + 1);
-        }
+  const increment = () => {
+    if (count < stock) {
+      setCount(count + 1);
     }
-    
-    const decrement = () => {
-        if (count > initial) {
-            setCount(count - 1);
-        }
+  };
+
+  const decrement = () => {
+    if (count > initial) {
+      setCount(count - 1);
     }
-    return (
-        <ProductAmountContainer>
-            <Button variant="text" onClick={increment}><Add /></Button>
-            <ProductAmount>{count}</ProductAmount>
-            <Button variant="text" onClick={decrement}><Remove /></Button>
-            {
-                stock
-                ? <Button variant="contained" color="primary" onClick={() => onAdd(count)}>Add to Cart</Button>
-                : <Button variant="contained" disabled>Add to Cart</Button>
-            }
-            
-        </ProductAmountContainer>
-    );
-}
+  };
+  return (
+    <ProductAmountContainer>
+      <Button variant="text" onClick={increment}>
+        <Add />
+      </Button>
+      <ProductAmount>{count}</ProductAmount>
+      <Button variant="text" onClick={decrement}>
+        <Remove />
+      </Button>
+      {stock ? (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => onAdd(count)}
+        >
+          <Link to="/cart" style={{textDecoration:"none", color:"white"}}>Add to Cart</Link>
+        </Button>
+      ) : (
+        <Button variant="contained" disabled>
+          Add to Cart
+        </Button>
+      )}
+    </ProductAmountContainer>
+  );
+};
 
 export default ItemCount;
 /* unction ItemCount({ stock = 0, initial = 1, onAdd }) {
@@ -56,7 +68,7 @@ export default ItemCount;
     }
   };
  */
-   /*  <div className="main_div">
+/*  <div className="main_div">
       <div className="center_div">
         <h1>{count}</h1>
         <div className="btn_div">
@@ -76,4 +88,4 @@ export default ItemCount;
           }
         </div>
       </div>
-    </div> */ 
+    </div> */
