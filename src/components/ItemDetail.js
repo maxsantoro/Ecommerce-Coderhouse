@@ -11,7 +11,6 @@ import {
   Title,
   Desc,
   Price,
-  ButtonItemCount,
 } from "./styledComponents";
 const ItemDetail = ({ item }) => {
   const onAdd = (qty) => {
@@ -37,13 +36,11 @@ const ItemDetail = ({ item }) => {
             {itemCount === 0 ? (
               <ItemCount stock={item.stock} initial={itemCount} onAdd={onAdd} />
             ) : (
-              <Link to="/cart" style={{ textDecoration: "none" }}>
+              <Link to="/cart" style={{ textDecoration: "none",display:"flex",flexDirection:"column", paddingBottom:"17rem",justifyContent:"center"}}>
                 <Button
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
                   variant="contained"
                   color="secondary"
+
                 >
                   Checkout
                 </Button>
