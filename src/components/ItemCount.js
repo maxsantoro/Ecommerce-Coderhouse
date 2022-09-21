@@ -37,10 +37,10 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
           color="primary"
           onClick={() => onAdd(count)}
         >
-          <Link to="/cart" style={{textDecoration:"none", color:"white"}}>Add to Cart</Link>
+          Add to Cart
         </Button>
       ) : (
-        <Button variant="contained" disabled>
+        <Button  variant="contained" disabled>
           Add to Cart
         </Button>
       )}

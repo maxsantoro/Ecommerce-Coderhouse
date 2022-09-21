@@ -12,7 +12,7 @@ const ItemListContainer = () => {
 
   useEffect(() => {
     fetchProducts(
-      2000,
+      500,
       products.filter((item) => {
         if (idCategory === undefined) return item;
         return item.category === parseInt(idCategory);

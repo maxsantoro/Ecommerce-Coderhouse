@@ -25,7 +25,18 @@ const Logo = styled.h1`
     font-weight: bold;
     color:black;
 `;
-
+const ButtonItemCount = styled.div`
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 69px;
+    justify-content: center;
+    background-color: #f50057;
+    margin: 0;
+    FONT-VARIANT: JIS04;
+    font-size: 20px;
+`
 const Right = styled.div`
     flex: 1;
     display: flex;
@@ -166,6 +177,6 @@ export {
     Wrapper, Logo, MenuItem, Left, Center, Right, 
     ProductAmountContainer, ProductAmount, 
     ProductsContainer, ProductContainer,
-    Circle, Image, Info, Icon,
+    Circle, Image, Info, Icon,ButtonItemCount,
     DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price
 }
