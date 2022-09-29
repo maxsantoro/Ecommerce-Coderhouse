@@ -2,7 +2,6 @@ import Item from "./Item";
 import { ProductsContainer } from "./styledComponents";
 
 const ItemList = ({ items }) => {
-    console.log(items)
   return (
     <ProductsContainer>
       {items.length > 0 ? (
@@ -12,7 +11,7 @@ const ItemList = ({ items }) => {
             id={item.id}
             title={item.name}
             price={item.price}
-            pictureUrl={item.img[0]}
+            pictureUrl={item.img}
             stock={item.stock}
           />
         ))

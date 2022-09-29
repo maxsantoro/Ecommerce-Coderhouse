@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ProductAmountContainer, ProductAmount } from "./styledComponents";
 
 const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
+
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -22,6 +23,8 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
       setCount(count - 1);
     }
   };
+
+  
   return (
     <ProductAmountContainer>
       <Button variant="text" onClick={increment}>
@@ -31,7 +34,7 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
       <Button variant="text" onClick={decrement}>
         <Remove />
       </Button>
-      {stock ? (
+      {stock && count ? (
         <Button
           variant="contained"
           color="primary"
@@ -49,6 +52,10 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
 };
 
 export default ItemCount;
+
+
+
+
 /* unction ItemCount({ stock = 0, initial = 1, onAdd }) {
   const [count, setCount] = useState(initial);
 

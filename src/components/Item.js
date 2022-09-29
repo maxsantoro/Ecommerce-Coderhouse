@@ -4,6 +4,7 @@ import { ProductContainer, Circle, Image, Info, Icon } from './styledComponents'
 
 const Item = ({ id, title, stock, price, pictureUrl }) => {
     return (
+        
         <ProductContainer>
             <Circle />
             <Image src={pictureUrl} />

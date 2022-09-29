@@ -16,9 +16,9 @@ const NavBar = () => {
                     <Link to='/category/3' style={{textDecoration: "none", color: "white"}}><MenuItem>Caros</MenuItem></Link>                    
                 </Center>
                 <Right>
-                    <MenuItem>Registrar</MenuItem>
-                    <MenuItem>Loguearme</MenuItem>
-                    <MenuItem><CartWidget /></MenuItem>
+                    <MenuItem>Register</MenuItem>
+                    <MenuItem>Sign In</MenuItem>
+                    <MenuItem><Link to='/cart' style={{textDecoration: "none", color: "white"}}><CartWidget /></Link></MenuItem>
                 </Right>
             </Wrapper>
         </AppBar>

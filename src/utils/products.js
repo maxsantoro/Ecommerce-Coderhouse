@@ -1,3 +1,4 @@
+//Category ,description , img , name , price sock
 const products = [
   {
     id: 1,

@@ -12,12 +12,19 @@ import {
   Desc,
   Price,
 } from "./styledComponents";
+import { useContext } from 'react';
+import { CartContext } from './CartContext';
+
 const ItemDetail = ({ item }) => {
+  const [itemCount, setItemCount] = useState(0);
+
+  const context= useContext(CartContext);
+
   const onAdd = (qty) => {
     alert("You have selected " + qty + " items.");
     setItemCount(qty);
+    context.addItem(item,qty)
   };
-  const [itemCount, setItemCount] = useState(0);
 
   return (
     <>
@@ -25,7 +32,7 @@ const ItemDetail = ({ item }) => {
         <DetailContainer>
           <WrapperDetail>
             <ImgContainer>
-              <ImageDetail src={item.img[0]} />
+              <ImageDetail src={item.img} />
             </ImgContainer>
             <InfoContainer>
               <Title>{item.name}</Title>
@@ -40,7 +47,6 @@ const ItemDetail = ({ item }) => {
                 <Button
                   variant="contained"
                   color="secondary"
-
                 >
                   Checkout
                 </Button>
