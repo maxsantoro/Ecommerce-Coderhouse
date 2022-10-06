@@ -78,7 +78,7 @@ const Cart = () => {
     const itemsForDB = context.cartList.map(item => ({
       id: item.idItem,
       title: item.nameItem,
-      price: item.costItem,
+      price: item.priceItem,
       qty:item.qtyItem
     }));
 
@@ -124,7 +124,7 @@ const Cart = () => {
                 <Link to='/'><TopButton>CONTINUE SHOPPING</TopButton></Link>
                 {
                     (context.cartList.length > 0)
-                    ? <TopButton type="filled" onClick={context.removeItem}>DELETE ALL PRODUCTS</TopButton>
+                    ? <TopButton type="filled" onClick={context.clearList}>DELETE ALL PRODUCTS</TopButton>
                     : <TopText>Your cart is empty</TopText>
                 }
             </Top>
@@ -141,7 +141,7 @@ const Cart = () => {
                                 <span>
                                     <b>Product:</b> {item.nameItem}
                                 </span>
-                                <TopButton type="filled" onClick={() => context.deleteItem(item.idItem)}>DELETE</TopButton>
+                                <TopButton type="filled" onClick={() => context.removeItem(item.idItem)}>DELETE</TopButton>
                                 </Details>
                             </ProductDetail>
                             <PriceDetail>

@@ -13,7 +13,7 @@ export const CartContextProvider = ({children}) => {
             setCartList([
                 ...cartList,
                 {
-                    idItem:item.id,
+                    idItem: item.id,
                     img:item.img,
                     nameItem:item.name,
                     priceItem:item.price,
@@ -34,7 +34,7 @@ export const CartContextProvider = ({children}) => {
 
     const removeItem = (id) =>{
         //TODO
-        setCartList(cartList.filter(item => item.id !== id))
+        setCartList(cartList.filter(item => item.idItem !== id))
     }
 
 
@@ -45,7 +45,7 @@ export const CartContextProvider = ({children}) => {
         
         // qty = [5,2,3]
         //return qty 10(la suma de el array que esta arriba de ejemplo)
-        let qtys = cartList.map(item => item.qty);
+        let qtys = cartList.map(item => item.qtyItem);
         return qtys.reduce(((previousValue,currentValue) => previousValue + currentValue),0);
     }
     
