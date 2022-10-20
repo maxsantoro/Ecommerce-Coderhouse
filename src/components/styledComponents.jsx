@@ -45,8 +45,10 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
-    font-size: 16px;
+    font-size: 19px;
+    justify-content:flex-start;
     cursor: pointer;
+    text-align: left;
     margin-left: 25px;
     color:black;
 `;
@@ -227,6 +229,6 @@ export {
     ProductAmountContainer, ProductAmount, 
     ProductsContainer, ProductContainer,
     Circle, Image, Info, Icon,
-    DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price,
+    DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price,ButtonItemCount,
     WrapperCart, TitleCart, ContentCart, Product, ProductDetail, ImageCart, Details, PriceDetail, ProductPrice
 }

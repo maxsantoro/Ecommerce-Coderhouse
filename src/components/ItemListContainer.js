@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import Itemlist from "./ItemList";
 import { useParams } from "react-router";
 import { fetchData } from "../utils/firestoreFetch";
-/* import fetchProducts from "../utils/fetchProducts"; */
-/* const { products } = require("../utils/products"); */
+
 
 const ItemListContainer = () => {
   const [datos, setDatos] = useState([]);

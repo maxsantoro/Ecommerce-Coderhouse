@@ -99,6 +99,13 @@ const Cart = () => {
       items: itemsForDB,
       date: serverTimestamp()
     };
+
+    let newOrder= { 
+      buyer:context.userInfo,
+      items:itemsForDB,
+      date:serverTimestamp(),
+      total:context.calcTotal()
+    }
   
     console.log(order);
     
