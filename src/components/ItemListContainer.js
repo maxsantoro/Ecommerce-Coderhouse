@@ -4,13 +4,13 @@ import Itemlist from "./ItemList";
 import { useParams } from "react-router";
 import { fetchData } from "../utils/firestoreFetch";
 
-
 const ItemListContainer = () => {
   const [datos, setDatos] = useState([]);
 
   const { idCategory } = useParams();
-
+  console.log(typeof idCategory);
   //componentDidUpdate
+
   useEffect(() => {
     fetchData(idCategory)
       .then((result) => setDatos(result))
@@ -19,11 +19,10 @@ const ItemListContainer = () => {
 
   //componentWillUnmount
   useEffect(() => {
-    return (() => {
-        setDatos([]);
-    })
-}, []);
-
+    return () => {
+      setDatos([]);
+    };
+  }, []);
 
   return (
     <div>

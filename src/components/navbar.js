@@ -24,19 +24,13 @@ const NavBar = () => {
             to="/category/1"
             style={{ textDecoration: "none", color: "white" }}
           >
-            <MenuItem>Accesibles</MenuItem>
+            <MenuItem>Audifonos</MenuItem>
           </Link>
           <Link
             to="/category/2"
             style={{ textDecoration: "none", color: "white" }}
           >
-            <MenuItem>Medios</MenuItem>
-          </Link>
-          <Link
-            to="/category/3"
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            <MenuItem>Caros</MenuItem>
+            <MenuItem>Equipos Audiologicos</MenuItem>
           </Link>
         </Center>
         <Right>
