@@ -117,6 +117,7 @@ const Cart = () => {
     }
   
     createOrderInFirestore()
+      .then(result=>console.log(result))
       .then(result => alert('Your order has been created. Please take note of the ID of your order.\n\n\nOrder ID: ' + result.id + '\n\n'))
       .catch(err => console.log(err));
   

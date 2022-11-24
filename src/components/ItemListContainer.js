@@ -6,9 +6,7 @@ import { fetchData } from "../utils/firestoreFetch";
 
 const ItemListContainer = () => {
   const [datos, setDatos] = useState([]);
-
   const { idCategory } = useParams();
-  console.log(typeof idCategory);
   //componentDidUpdate
 
   useEffect(() => {
