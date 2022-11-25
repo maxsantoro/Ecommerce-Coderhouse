@@ -1,6 +1,10 @@
 import { AppBar } from "@material-ui/core";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/authContext";
+import { Navigate } from "react-router-dom";
 import CartWidget from "./CartWidget";
+
 import {
   Wrapper,
   Logo,
@@ -11,6 +15,9 @@ import {
 } from "./styledComponents";
 
 const NavBar = () => {
+  const { user } = useAuth();
+  console.log(user);
+
   return (
     <AppBar color="secondary" position="relative">
       <Wrapper>
@@ -20,6 +27,12 @@ const NavBar = () => {
           </Link>
         </Left>
         <Center>
+          <Link
+            to="/products"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <MenuItem>Productos</MenuItem>
+          </Link>
           <Link
             to="/category/1"
             style={{ textDecoration: "none", color: "white" }}
@@ -34,27 +47,73 @@ const NavBar = () => {
           </Link>
         </Center>
         <Right>
-        <MenuItem>
-            <Link
-              to="/register"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-            Register
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link
-              to="/singin"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-            Sign in
-            </Link>
-          </MenuItem>
+          {user ? (
+            <>
+              <MenuItem>
+                <Link
+                  to="/register"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: "15px",
+                  }}
+                ></Link>
+              </MenuItem>
+
+              <MenuItem>
+                <Link
+                  to="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: "15px",
+                  }}
+                ></Link>
+              </MenuItem>
+            </>
+          ) : (
+            <>
+              <MenuItem>
+                <Link
+                  to="/register"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: "15px",
+                  }}
+                >
+                  Registration
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: "15px",
+                  }}
+                >
+                  Sign in
+                </Link>
+              </MenuItem>
+            </>
+          )}
+            {user ? 
+            <>
           <MenuItem>
             <Link to="/cart" style={{ textDecoration: "none", color: "white" }}>
               <CartWidget />
             </Link>
-          </MenuItem>
+          </MenuItem> 
+          </>
+          :
+          <>
+          <Link to="" style={{ textDecoration: "none", color: "white" }}>
+              
+            </Link>
+
+            </>}
         </Right>
       </Wrapper>
     </AppBar>
