@@ -1,78 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext} from 'react';
 import { CartContext } from './CartContext';
-import { WrapperCart, TitleCart, ContentCart, Product, ProductDetail, ImageCart, Details, PriceDetail, ProductAmountContainer, ProductAmount, ProductPrice } from './styledComponents';
+import { WrapperCart, TitleCart, ContentCart, Product, ProductDetail, ImageCart, Details, PriceDetail, ProductAmountContainer, ProductAmount, ProductPrice, Top, TopButton, TopText, Bottom, Info1, Summary, SummaryTitle, SummaryItem, SummaryItemText, SummaryItemPrice,Button } from './styledComponents';
 import FormatNumber from "../utils/FormatNumber";
-import styled from "styled-components";
 import { collection, doc, setDoc, serverTimestamp, updateDoc, increment } from "firebase/firestore";
 import {db} from '../utils/firestoreConfiguration';
+import { useAuth } from "../context/authContext";
 
-const Top = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-`;
-
-const TopButton = styled.button`
-  padding: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
-  background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
-`;
-
-const TopText = styled.span`
-  margin: 0px 10px;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Info = styled.div`
-  flex: 3;
-`;
-
-
-const Summary = styled.div`
-  flex: 1;
-  border: 0.5px solid lightgray;
-  border-radius: 10px;
-  padding: 20px;
-  height: 30vh;
-`;
-
-const SummaryTitle = styled.h1`
-  font-weight: 200;
-`;
-
-const SummaryItem = styled.div`
-  margin: 30px 0px;
-  display: flex;
-  justify-content: space-between;
-  font-weight: ${(props) => props.type === "total" && "500"};
-  font-size: ${(props) => props.type === "total" && "24px"};
-`;
-
-const SummaryItemText = styled.span``;
-
-const SummaryItemPrice = styled.span``;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-`;
 
 
 const Cart = () => {
   const context = useContext(CartContext);
+  const { user } = useAuth();
+ 
+
 
   const createOrder = () => {
     const itemsForDB = context.cartList.map(item => ({
@@ -81,7 +22,8 @@ const Cart = () => {
       price: item.priceItem,
       qty:item.qtyItem
     }));
-
+    
+    //restar productos de db
     context.cartList.forEach(async (item) => {
       const itemRef = doc(db, "Items", item.idItem);
       await updateDoc(itemRef, {
@@ -89,42 +31,29 @@ const Cart = () => {
       });
     });
 
-    let order = {
-      buyer: {
-        name: "Leo Messi",
-        email: "leo@messi.com",
-        phone: "123456789"
-      },
-      total: context.calcTotal(),
-      items: itemsForDB,
-      date: serverTimestamp()
-    };
-
     let newOrder= { 
-      buyer:context.userInfo,
+      buyer:user.displayName || user.email, 
       items:itemsForDB,
       date:serverTimestamp(),
       total:context.calcTotal()
     }
-  
-    console.log(order);
+    console.log(newOrder)
     
     const createOrderInFirestore = async () => {
       // Add a new document with a generated id
       const newOrderRef = doc(collection(db, "orders"));
-      await setDoc(newOrderRef, order);
+      await setDoc(newOrderRef, newOrder);
       return newOrderRef;
     }
   
     createOrderInFirestore()
-      .then(result=>console.log(result))
       .then(result => alert('Your order has been created. Please take note of the ID of your order.\n\n\nOrder ID: ' + result.id + '\n\n'))
       .catch(err => console.log(err));
   
     context.removeItem();
-  
-  }
 
+  }
+ 
     return (
         <WrapperCart>
             <TitleCart>YOUR CART</TitleCart>
@@ -138,7 +67,7 @@ const Cart = () => {
             </Top>
             <ContentCart>
             <Bottom>
-                <Info>
+                <Info1>
                     {
                         context.cartList.length > 0 &&
                             context.cartList.map(item => 
@@ -163,9 +92,9 @@ const Cart = () => {
                             </Product>
                             )
                     }
-                </Info>
+                </Info1>
                 {
-                    context.cartList.length > 0 &&
+                    context.cartList.length > 0 && user ?
                         <Summary>
                             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                             <SummaryItem>
@@ -186,7 +115,29 @@ const Cart = () => {
                             </SummaryItem>
                             <Button onClick={createOrder}>CHECKOUT NOW</Button>
                         </Summary>
-                }
+                :
+                  <Summary>
+                            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+                            <SummaryItem>
+                                <SummaryItemText>Subtotal</SummaryItemText>
+                                <SummaryItemPrice><FormatNumber number={context.calcSubTotal()} /></SummaryItemPrice>
+                            </SummaryItem>
+                            {/* <SummaryItem>
+                                <SummaryItemText>Taxes</SummaryItemText>
+                                <SummaryItemPrice><FormatNumber number={context.calcTaxes()} /></SummaryItemPrice>
+                            </SummaryItem>
+                            <SummaryItem>
+                                <SummaryItemText>Taxes Discount</SummaryItemText>
+                                <SummaryItemPrice><FormatNumber number={-context.calcTaxes()} /></SummaryItemPrice>
+                            </SummaryItem> */}
+                            <SummaryItem type="total">
+                                <SummaryItemText>Total</SummaryItemText>
+                                <SummaryItemPrice><FormatNumber number={context.calcTotal()} /></SummaryItemPrice>
+                            </SummaryItem>
+                            <Link to="/register"><Button>Log in</Button></Link>
+                        </Summary>
+                      }
+                
             </Bottom>
             </ContentCart>
         </WrapperCart>

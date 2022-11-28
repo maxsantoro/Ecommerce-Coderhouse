@@ -1,8 +1,6 @@
 import { AppBar } from "@material-ui/core";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/authContext";
-import { Navigate } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
 import {
@@ -16,7 +14,6 @@ import {
 
 const NavBar = () => {
   const { user } = useAuth();
-  console.log(user);
 
   return (
     <AppBar color="secondary" position="relative">
@@ -41,7 +38,7 @@ const NavBar = () => {
           </Link>
           <Link
             to="/category/2"
-            style={{ textDecoration: "none", color: "white" }}
+            style={{ textDecoration: "none", color: "white" ,display:"inline-block",overflow:"hidden",whiteSpace:"nowrap"}}
           >
             <MenuItem>Equipos Audiologicos</MenuItem>
           </Link>
@@ -101,6 +98,19 @@ const NavBar = () => {
           )}
             {user ? 
             <>
+            <MenuItem>
+                <Link
+                  to="/"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: "15px",
+                    marginRight:"15px"
+                  }}
+                >
+                  Log Out
+                </Link>
+              </MenuItem>
           <MenuItem>
             <Link to="/cart" style={{ textDecoration: "none", color: "white" }}>
               <CartWidget />

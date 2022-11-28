@@ -12,18 +12,18 @@ import {
   Desc,
   Price,
 } from "./styledComponents";
-import { useContext } from 'react';
-import { CartContext } from './CartContext';
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 const ItemDetail = ({ item }) => {
   const [itemCount, setItemCount] = useState(0);
 
-  const context= useContext(CartContext);
+  const context = useContext(CartContext);
 
   const onAdd = (qty) => {
     alert("You have selected " + qty + " items.");
     setItemCount(qty);
-    context.addItem(item,qty)
+    context.addItem(item, qty);
   };
 
   return (
@@ -38,16 +38,26 @@ const ItemDetail = ({ item }) => {
               <Title>{item.name}</Title>
               <Desc>{item.description}</Desc>
               <Price>$ {item.price}</Price>
-              <Desc>{item.stock} unidades en stock</Desc>
+              {item.stock > 0 ? (
+                <Desc>{item.stock} unidades en stock</Desc>
+              ) : (
+                <Desc>No hay stock</Desc>
+              )}
             </InfoContainer>
             {itemCount === 0 ? (
               <ItemCount stock={item.stock} initial={itemCount} onAdd={onAdd} />
             ) : (
-              <Link to="/cart" style={{ textDecoration: "none",display:"flex",flexDirection:"column", paddingBottom:"17rem",justifyContent:"center"}}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                >
+              <Link
+                to="/cart"
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  flexDirection: "column",
+                  paddingBottom: "17rem",
+                  justifyContent: "center",
+                }}
+              >
+                <Button variant="contained" color="secondary">
                   Checkout
                 </Button>
               </Link>

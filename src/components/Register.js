@@ -33,7 +33,7 @@ export function Register() {
     <div className="w-full max-w-xs m-auto">
       {error && <Alert message={error} />}
       <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 "
+        className="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-20 text-center"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
@@ -72,7 +72,7 @@ export function Register() {
         </button>
       </form>
       <p className="my-4 text-sm flex justify-between px-3">
-        Already have an Account ?<Link to="/login">Login</Link>
+        Already have an Account ?<Link to="/login"><div className="font-bold" >Login</div></Link>
       </p>
     </div>
   );
