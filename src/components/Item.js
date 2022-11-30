@@ -1,6 +1,6 @@
 import { DescriptionOutlined, InfoOutlined, LocalOfferOutlined } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { ProductContainer, Circle, Image, Info, Icon,OutOfStockContainer, InfoOutOfStock } from './styledComponents';
+import { ProductContainer, Circle, Image, Info, Icon,OutOfStockContainer,  } from './styledComponents';
 
 const Item = ({ id, title, stock, price, pictureUrl }) => {
 
