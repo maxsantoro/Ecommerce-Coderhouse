@@ -28,19 +28,19 @@ const NavBar = () => {
             to="/products"
             style={{ textDecoration: "none", color: "white" }}
           >
-            <MenuItem>Productos</MenuItem>
+            <MenuItem>Products</MenuItem>
           </Link>
           <Link
             to="/category/1"
             style={{ textDecoration: "none", color: "white" }}
           >
-            <MenuItem>Audifonos</MenuItem>
+            <MenuItem>Hearing Aids</MenuItem>
           </Link>
           <Link
             to="/category/2"
             style={{ textDecoration: "none", color: "white" ,display:"inline-block",overflow:"hidden",whiteSpace:"nowrap"}}
           >
-            <MenuItem>Equipos Audiologicos</MenuItem>
+            <MenuItem>Audiometers</MenuItem>
           </Link>
         </Center>
         <Right>

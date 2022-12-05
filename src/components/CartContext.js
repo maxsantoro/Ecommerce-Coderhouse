@@ -65,7 +65,7 @@ export const CartContextProvider = ({children}) => {
 
     const calcSubTotal = () => {
         let totalPerItem = cartList.map(item => calcTotalPerItem(item.idItem));
-        return totalPerItem.reduce((previousValue,currentValue) => previousValue + currentValue);
+        return totalPerItem.reduce(((previousValue,currentValue) => previousValue + currentValue),0);
     }
 
     return (

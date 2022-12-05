@@ -3,7 +3,7 @@ import { useAuth } from "../context/authContext";
 
 export function Home() {
   const { user, logout, loading } = useAuth();
-  console.log(user);
+
 
   const handleLogout = async () => {
     try {
